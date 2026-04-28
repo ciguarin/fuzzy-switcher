@@ -1,5 +1,6 @@
 from AppKit import NSWorkspace
 from ApplicationServices import AXUIElementCreateApplication, AXUIElementCopyAttributeValue
+
 from src.types import Window
 
 
@@ -19,6 +20,6 @@ def get_windows() -> list[Window]:
                 err, title = AXUIElementCopyAttributeValue(window_ax_obj, "AXTitle", None)
 
                 if err == 0 and title:
-                    windows.append(Window(title, app.localizedName(), pid, window_ax_obj))
+                    windows.append(Window(title, app.localizedName(), pid, window_ax_obj, app))
 
     return windows
